@@ -10,19 +10,7 @@ let scopes = "read:user read:org repo"
 function Welcome() {
   let [username, setUsername] = useState(undefined);
   async function getUsername(code) {
-    /* 
-      TODO: We need to make a request to the API endpoint that we just wrote.
-    */
-	  // let request = await fetch("http://localhost:4000/get-username", {
-    //   method: "GET",
-    //   headers: {
-	  //   	"Content-Type": "application/json",
-    //   },
-    //   credentials: "include",
-	  // }).catch((error) => {
-    //   console.error(error);
-	  // });
-    // let response = await request.json()
+    // TODO: We need to make a request to the API endpoint that we just wrote.
     console.log("Success!");
     setUsername(response.username);
   }
@@ -40,8 +28,7 @@ function Welcome() {
       <span>Sign in with GitHub</span>
       <img src={ GithubMark } alt="Github Logo" /> </a>
     );
-  }
-  else {
+  } else {
 	  return (
       <span id="welcome" > Welcome
         {(username !== undefined) ? "," : ""}
@@ -53,20 +40,15 @@ function Welcome() {
 
 function Homepage() {
   async function login(code) {
-    let request = await fetch("http://localhost:4000/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
+    let request = await fetch(
+      "http://localhost:4000/login",
       /* TODO: What should the body of this request be? */
-      body: JSON.stringify({
-        authcode: code,
-      }),
-    }).catch((error) => {
+    ).catch((error) => {
       console.error(error);
     });
     let response = await request.json()
+    // If the response indicates that we successfully logged in,
+    // reload the page to apply the changes.
     if (response.logged) {
       window.location.reload(false);
     }
@@ -75,10 +57,6 @@ function Homepage() {
     const url = window.location.href;
     const urlParams = new URLSearchParams((new URL(url)).search);
     /* TODO: what do we do here? */
-    if (url.includes("?code=")) {
-      let code = urlParams.get("code");
-      login(code);
-    }
   });
     
   return (

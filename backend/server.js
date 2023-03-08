@@ -34,12 +34,7 @@ app.post("/login", function (req, res) {
     }
     let code = req.body.authcode;
     axios({
-        /* TODO: What request should we make here? */
-        // method: "POST",
-        // url: `https://github.com/login/oauth/access_token?client_id=${clientID}&client_secret=${clientSecret}&code=${code}`,
-        // headers: {
-        //     Accept: "application/json",
-        // },
+        /* TODO 1: What request should we make here? */
     }).then((response) => {
         // Here, we store the returned access token as a cookie.
         // This allows us to send the access token alongside the rest of the request.
@@ -68,16 +63,10 @@ app.get("/get-username", function (req, res) {
     }
     // Otherwise,
     else {
-        /* TODO: What request should we make here? */
+        /* TODO 2: What request should we make here? */
         axios({
-            // method: "GET",
-            // url: `https://api.github.com/user`,
-            // headers: {
-            //     Authorization: "token " + req.cookies.token,
-            // },
         }).then((response) => {
-            /* TODO: What should we do with the response? */
-            // res.send(JSON.stringify({username: response.data.login}));
+            /* TODO 3: What should we do with the response? */
         });
     }
 });
